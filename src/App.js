@@ -1,63 +1,50 @@
 import React from 'react';
 import './App.css';
 
-class App extends React.Component{
-  constructor(props){
-    super(props);
-    this.handleUsdChange = this.handleUsdChange.bind(this);
-    this.handleRmbChange = this.handleRmbChange.bind(this);
-    this.state = {money:'', category: 'u'}
-  }
-
-  handleUsdChange(money){
-    this.setState({money: money, category: 'u'})
-  }
-  handleRmbChange(money){
-    this.setState({money: money, category: 'r'})
-  }
-
-  render(){
-    const category = this.state.category;
-    const money = this.state.money;
-    const usd = category === 'r' ? money/7 : money;
-    let rmb = category === 'u' ? money*7 : money;
-    if(usd===''){
-      rmb='';
-    }
+function FancyBorder(props){
     return(
-      <div>
-        <MoneyInput 
-          category = 'USD' money = {usd} change = {this.handleUsdChange}/>
-        <MoneyInput 
-          category = 'RMB' money = {rmb} change = {this.handleRmbChange}/>
-      
-      </div>
+        <div>
+            {props.children}
+        </div>
     )
-  }
+}
+function Dialog(props){
+    return(<FancyBorder>
+        <h1>
+            {props.title}
+        </h1>
+        <p>
+            {props.message}
+        </p>
+        {props.children}
+    </FancyBorder>)
 }
 
-class MoneyInput extends React.Component{
-  constructor(props){
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-  }
-  
-  handleChange(e){
-    this.props.change(e.target.value);
-  }
-  render(){
-    const money = this.props.money;
-    const category = this.props.category;
-    return(<filedset>
-      <legend> Enter money in {category}:</legend>
-      <input 
-        value = {money} 
-        onChange={this.handleChange}
-        placeholder = {"enter here"}/>
-      </filedset>)
-  }
+class App extends React.Component{
+    constructor(props){
+        super(props);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSignUp = this.handleSignUp.bind(this);
+        this.state = {login:''};
+    }
+    render(){
+        return(
+            <Dialog title='Welcome to Mars!' message='How should we call you?'>
+                <input value={this.state.login} onChange = {this.handleChange}/>
+                <button onClick={this.handleSignUp}>
+                    Sign up!
+                </button>
+            </Dialog>
+        )
+    }
+
+    handleChange(e){
+        this.setState({login: e.target.value});
+    }
+    handleSignUp(){
+        alert(`Welcome to Mars, ${this.state.login}!`)
+    }
 }
 
 
 export default App;
-
