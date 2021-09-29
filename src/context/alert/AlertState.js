@@ -25,8 +25,9 @@ const AlertState = props => {
             alert:state,
             setAlert
         }}
-        {...props.children}
-    ></AlertContext.Provider>
+    >
+        {props.children}
+    </AlertContext.Provider>
 }
 
 export default AlertState;

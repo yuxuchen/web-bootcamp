@@ -9,17 +9,14 @@ import Alert from './components/layout/Alert';
 
 import GithubState from './context/github/GithubState';
 import AlertState from './context/alert/AlertState';
+
 import './App.css';
 
 const App = () => { 
-    const [alert, setAlert] = useState(null);
-
- 
-        
-        return(
+       return(
             <GithubState>
               <AlertState>
-              <Router>
+              <Router >
                <div className = 'App'>
                <Navbar/>
                 <div className='container'>
