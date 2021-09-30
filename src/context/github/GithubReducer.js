@@ -6,7 +6,7 @@ import {
     GET_REPOS
 } from '../types';
 
-export default reducer =  (state, action) =>{
+ const reducer = (state, action) =>{
     switch(action.type){
         case SEARCH_USERS:
             return {
@@ -42,3 +42,5 @@ export default reducer =  (state, action) =>{
                 return state;
     }
 }
+
+export default reducer
